@@ -10,6 +10,7 @@ const schemaCreateUser = Joi.object().keys({
     'string.email': '"{#key}" must be a valid email',
     'string.min': '"{#key}" length must be at least {{#limit}} characters long',
 });
+
 module.exports = {
     schemaCreateUser,
 };
