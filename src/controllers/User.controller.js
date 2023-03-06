@@ -16,18 +16,25 @@ const login = async (req, res) => {
 const createUSer = async (req, res) => {
     const newUSer = req.body;
     const { type, message } = await userService.createUser(newUSer);
-//     if (type.code === 'ER_DUP_ENTRY') {
-//  return res.status(400)
-//     .json({ message: 'User already registered' }); 
-// } 
-    if (type) return res.status(409).send({ message: 'User already registered' });
+    if (type === 'SequelizeUniqueConstraintError') {
+ return res.status(409)
+    .json({ message: 'User already registered' }); 
+} 
+    if (type) return res.status(400).send({ message });
 
     const { password: _, ...userWithoutPassword } = message;
     const token = createToken(userWithoutPassword);
     
     return res.status(201).json({ token });
 };
+
+const getAll = async (_req, res) => {
+    const { message } = await userService.findAll();
+
+    res.status(200).json(message);
+};
 module.exports = {
     login,
     createUSer,
+    getAll,
 };

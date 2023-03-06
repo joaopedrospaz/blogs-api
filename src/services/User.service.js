@@ -11,11 +11,16 @@ const createUser = async (data) => {
         const newUser = await User.create(data);
         return { type: null, message: newUser.dataValues };
     } catch (error) {
-        return { type: error, message: error.message };
+        return { type: error.name, message: error.message };
     }
 };
 
+const findAll = async () => {
+    const allUSers = await User.findAll({ attributes: { exclude: ['password'] } }); 
+    return { type: null, message: allUSers };
+};
 module.exports = {
     findUser,
     createUser,
+    findAll,
 };
