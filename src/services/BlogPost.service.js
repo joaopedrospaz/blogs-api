@@ -38,10 +38,14 @@ const updatePost = async (id, title, content) => {
     const updated = await BlogPost.update({ title, content }, { where: { id } });
     return updated;
 };
+const deletePost = async (id) => {
+    await BlogPost.destroy({ where: { id } });
+};
 
 module.exports = {
     getAll,
     createPost,
     getById,
     updatePost,
+    deletePost,
 };
