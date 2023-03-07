@@ -16,8 +16,18 @@ const createPost = async (req, res) => {
     const result = await blogPostService.createPost(id, post);
     res.status(201).json(result);
 };
+
+const updatePost = async (req, res) => {
+    const { id } = req.params;
+    const { title, content } = req.body;
+
+     await blogPostService.updatePost(id, title, content);
+    const { message } = await blogPostService.getById(id);
+    res.status(200).json(message);
+};
 module.exports = {
     findAll,
     createPost,
     findById,
+    updatePost,
 };
