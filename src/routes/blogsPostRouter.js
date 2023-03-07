@@ -8,6 +8,7 @@ const validateUpdatePost = require('../middlewares/validateUpdatePost');
 const blogPostRouter = express.Router();
 
 blogPostRouter.get('/', validateToken, BlogPostController.findAll);
+blogPostRouter.get('/search', validateToken, BlogPostController.seacrhPost);
 blogPostRouter.get('/:id', validateToken, BlogPostController.findById);
 blogPostRouter.post('/', validateToken, validateBlogPost, BlogPostController.createPost);
 blogPostRouter.put('/:id', validateToken, validateUpdatePost, BlogPostController.updatePost);
