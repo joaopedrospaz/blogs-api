@@ -9,7 +9,7 @@ const login = async (req, res) => {
     if (type) return res.status(400).json({ message: 'Invalid fields' });
     const { password: _, ...userWithoutPassword } = message;
     const data = createToken(userWithoutPassword);
-
+    req.user = userWithoutPassword;
   return res.status(200).json({ token: data });
 };
 
@@ -24,7 +24,7 @@ const createUSer = async (req, res) => {
 
     const { password: _, ...userWithoutPassword } = message;
     const token = createToken(userWithoutPassword);
-    
+    req.user = userWithoutPassword;
     return res.status(201).json({ token });
 };
 

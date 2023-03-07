@@ -29,7 +29,7 @@ module.exports = {
       },
       published: {
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        defaultValue: new Date(),
       },
       updated: {
         type: Sequelize.DATE,
