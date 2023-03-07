@@ -22,14 +22,17 @@ const findAll = async () => {
 
 const findById = async (id) => {
     const getUser = await User.findByPk(id, { attributes: { exclude: ['password'] } });
-    console.log(getUser);
     if (!getUser) return { type: 'NOT_FOUND', message: 'User does not exist' };
-
     return { type: null, message: getUser };
+};
+
+const deleteUser = async (id) => {
+    await User.destroy({ where: { id } });
 };
 module.exports = {
     findUser,
     createUser,
     findAll,
     findById,
+    deleteUser,
 };

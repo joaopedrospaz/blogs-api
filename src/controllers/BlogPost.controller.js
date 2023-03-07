@@ -27,7 +27,7 @@ const updatePost = async (req, res) => {
 };
 
 const deletePost = async (req, res) => {
-    const { id } = req.params;
+    const { user: { data: { dataValues: { id } } } } = req;
 
      await blogPostService.deletePost(id);
     res.status(204).end();
