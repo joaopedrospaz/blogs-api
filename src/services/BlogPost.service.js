@@ -37,6 +37,7 @@ const createPost = async (userId, { title, content, categoryIds }) => {
 
 const updatePost = async (id, title, content) => {
     const updated = await BlogPost.update({ title, content }, { where: { id } });
+    console.log(updated);
     return updated;
 };
 const deletePost = async (id) => {
